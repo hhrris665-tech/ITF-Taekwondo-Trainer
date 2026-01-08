@@ -1,3 +1,5 @@
+import React, { useState } from "react";
+
 const patterns = [
   { name: "Chon-Ji", moves: 19, meaning: { en: "Heaven and Earth", om: "jannata fi lafa" } },
   { name: "Dan-Gun", moves: 21, meaning: { en: "Founder of Korea", om: "Hundeeffataa Kooriyaa" } },
@@ -23,4 +25,34 @@ const patterns = [
   { name: "Ul-Ji", moves: 42, meaning: { en: "General Ul-Ji", om: "Ajajaa loltoota" } },
   { name: "Moon-Moo", moves: 61, meaning: { en: "King Moon-Moo", om: "Mootii walitti-buusi" } },
   { name: "So-San", moves: 72, meaning: { en: "Patriot monk", om: "Barsiisaa goota" } },
-  { name: "Se-Jong", moves: 24, meaning: { en: "King Se-Jong", om:
+  { name: "Se-Jong", moves: 24, meaning: { en: "King Se-Jong", om: "Mootii qubee" } }
+];
+
+export default function App() {
+  const [lang, setLang] = useState("en");
+
+  return (
+    <div style={{ padding: 16, fontFamily: "Arial" }}>
+      <div style={{ display: "flex", justifyContent: "space-between" }}>
+        <h2>🥋 ITF Taekwondo Trainer</h2>
+        <button onClick={() => setLang(lang === "en" ? "om" : "en")}>
+          {lang === "en" ? "🇪🇹" : "🇬🇧"}
+        </button>
+      </div>
+
+      <h3>ITF Patterns (Tuls)</h3>
+      <ul>
+        {patterns.map((p, i) => (
+          <li key={i}>
+            <b>{p.name}</b> – {p.meaning[lang]} ({p.moves} moves)
+          </li>
+        ))}
+      </ul>
+
+      <hr />
+      <p><b>Created by:</b> Ahmed Muhammad</p>
+      <p><b>Instructor:</b> Sayimak Ibrahim</p>
+      <p><b>Assistance:</b> ChatGPT (OpenAI)</p>
+    </div>
+  );
+}
