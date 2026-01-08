@@ -1,36 +1,26 @@
-import React, { useState } from "react";
-
 const patterns = [
-  { name: "Chon-Ji", moves: 19, meaning: { en: "Heaven and Earth", om: "Samii fi lafa" } },
-  { name: "Dan-Gun", moves: 21, meaning: { en: "Founder of Korea", om: "Abbaa seenaa Kooriyaa" } },
+  { name: "Chon-Ji", moves: 19, meaning: { en: "Heaven and Earth", om: "jannata fi lafa" } },
+  { name: "Dan-Gun", moves: 21, meaning: { en: "Founder of Korea", om: "Hundeeffataa Kooriyaa" } },
   { name: "Do-San", moves: 24, meaning: { en: "Patriot", om: "Lammii bilisummaa" } },
-];
+  { name: "Won-Hyo", moves: 28, meaning: { en: "Buddhist monk", om: "Barsiisaa Buudaa" } },
+  { name: "Yul-Gok", moves: 38, meaning: { en: "Great scholar", om: "Beekaa guddaa" } },
+  { name: "Joong-Gun", moves: 32, meaning: { en: "Patriot Ahn Joong-Gun", om: "Gootoo bilisummaa" } },
+  { name: "Toi-Gye", moves: 37, meaning: { en: "Scholar Yi Hwang", om: "Beekaa seenaa" } },
+  { name: "Hwa-Rang", moves: 29, meaning: { en: "Youth warriors", om: "Dargaggoota loltoota" } },
+  { name: "Choong-Moo", moves: 30, meaning: { en: "Admiral Yi Sun-Sin", om: "Ajajaa lolaa" } },
 
-export default function App() {
-  const [lang, setLang] = useState("en");
+  { name: "Kwang-Gae", moves: 39, meaning: { en: "Great king", om: "Mootii guddaa" } },
+  { name: "Po-Eun", moves: 36, meaning: { en: "Faithful scholar", om: "Beekaa amanamaa" } },
+  { name: "Ge-Baek", moves: 44, meaning: { en: "General Ge-Baek", om: "Ajajaa waraanaa" } },
 
-  return (
-    <div style={{ padding: 16, fontFamily: "Arial" }}>
-      <div style={{ display: "flex", justifyContent: "space-between" }}>
-        <h2>🥋 ITF Taekwondo Trainer</h2>
-        <button onClick={() => setLang(lang === "en" ? "om" : "en")}>
-          {lang === "en" ? "🇪🇹" : "🇬🇧"}
-        </button>
-      </div>
-
-      <h3>Patterns (Tuls)</h3>
-      <ul>
-        {patterns.map((p, i) => (
-          <li key={i}>
-            <b>{p.name}</b> – {p.meaning[lang]} ({p.moves})
-          </li>
-        ))}
-      </ul>
-
-      <hr />
-      <p><b>Created by:</b> Ahmed Muhammad</p>
-      <p><b>Instructor:</b> Sayimak Ibrahim</p>
-      <p><b>Assistance:</b> ChatGPT (OpenAI)</p>
-    </div>
-  );
-}
+  { name: "Eui-Am", moves: 45, meaning: { en: "Independence leader", om: "Hogganaa bilisummaa" } },
+  { name: "Choong-Jang", moves: 52, meaning: { en: "General Kim Duk Ryang", om: "Ajajaa gooticha" } },
+  { name: "Juche", moves: 45, meaning: { en: "Self-reliance", om: "Of-dandeessummaa" } },
+  { name: "Sam-Il", moves: 33, meaning: { en: "March 1st movement", om: "Sochii bilisummaa" } },
+  { name: "Yoo-Sin", moves: 68, meaning: { en: "General Kim Yoo-Sin", om: "Ajajaa seenaa" } },
+  { name: "Choi-Yong", moves: 46, meaning: { en: "General Choi Yong", om: "Ajajaa waraanaa" } },
+  { name: "Yon-Gae", moves: 49, meaning: { en: "General Yon Gae", om: "Ajajaa gooticha" } },
+  { name: "Ul-Ji", moves: 42, meaning: { en: "General Ul-Ji", om: "Ajajaa loltoota" } },
+  { name: "Moon-Moo", moves: 61, meaning: { en: "King Moon-Moo", om: "Mootii walitti-buusi" } },
+  { name: "So-San", moves: 72, meaning: { en: "Patriot monk", om: "Barsiisaa goota" } },
+  { name: "Se-Jong", moves: 24, meaning: { en: "King Se-Jong", om:
