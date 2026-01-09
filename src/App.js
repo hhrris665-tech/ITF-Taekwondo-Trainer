@@ -74,7 +74,6 @@ export default function App() {
         <button onClick={() => setLang(lang === "en" ? "om" : "en")}>
           {lang === "en" ? "🇪🇹" : "🇬🇧"}
         </button>
-      </div>
 
       <h3>🎗️ ITF Colored Belt Syllabus</h3>
       <ul>
