@@ -67,6 +67,7 @@ export default function App() {
   const [lang, setLang] = useState("en");
 
   return (
+  <>
     <div style={{ padding: 16, fontFamily: "Arial" }}>
       <div style={{ display: "flex", justifyContent: "space-between" }}>
         <h2>🥋 ITF Taekwondo Trainer</h2>
@@ -76,25 +77,34 @@ export default function App() {
       </div>
 
       <h3>🎗️ ITF Colored Belt Syllabus (Geup)</h3>
-
       <ul>
         {belts.map((b, i) => (
-          <li key={i} style={{ marginBottom: 8 }}>
-            <b>{b.geup}</b> – {lang === "en"
+          <li key={i}>
+            <b>{b.geup}</b> –{" "}
+            {lang === "en"
               ? `${b.color} | Pattern: ${b.pattern}`
               : b.om}
           </li>
         ))}
       </ul>
 
-      <hr />
+      <h3>⚫ ITF Black Belt Patterns (Dan)</h3>
+      <ul>
+        {danPatterns.map((d, i) => (
+          <li key={i}>
+            <b>{d.dan}</b> – {d.pattern}
+          </li>
+        ))}
+      </ul>
 
+      <hr />
       <p><b>Created by:</b> Ahmed Muhammad</p>
       <p><b>Instructor:</b> Sayimak Ibrahim</p>
       <p><b>Assistance:</b> ChatGPT (OpenAI)</p>
     </div>
-  );
-}
+  </>
+);
+
 <h3>⚫ ITF Black Belt Patterns (Dan)</h3>
 <ul>
   {danPatterns.map((d, i) => (
