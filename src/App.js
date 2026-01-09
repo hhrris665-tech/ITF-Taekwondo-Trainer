@@ -40,7 +40,7 @@ export default function App() {
   const [lang, setLang] = useState("en");
 
   return (
-    <h3>🧍‍♂️ Stances (Seogi)</h3>
+    </div>   <h3>🧍‍♂️ Stances (Seogi)</h3>
 <ul>
   {stances.map((s, i) => (
     <li key={i}>{lang === "en" ? s.en : s.om}</li>
@@ -68,7 +68,7 @@ export default function App() {
   ))}
 </ul>
 
-    <div style={{ padding: 16, fontFamily: "Arial" }}>
+  </div>   <div style={{ padding: 16, fontFamily: "Arial" }}>
       <div style={{ display: "flex", justifyContent: "space-between" }}>
         <h2>🥋 ITF Taekwondo Trainer</h2>
         <button onClick={() => setLang(lang === "en" ? "om" : "en")}>
@@ -139,6 +139,7 @@ const handTechniques = [
       <p><b>Created by:</b> Ahmed Muhammad</p>
       <p><b>Instructor:</b> Sayimak Ibrahim</p>
       <p><b>Assistance:</b> ChatGPT (OpenAI)</p>
+        
     </div>
   );
 }
