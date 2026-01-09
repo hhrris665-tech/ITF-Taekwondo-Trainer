@@ -49,25 +49,47 @@ const stances = [
 ];
 
 const blocks = [
-  { en: "Low block", om: "Uggura gadi" },
-  { en: "Middle block", om: "Uggura jidduu" },
-  { en: "High block", om: "Uggura olii" },
-  { en: "Knife-hand guarding block", om: "Uggura harka billaa" },
-  { en: "Twin forearm block", om: "Uggura harka lama" }
+  { en: "Low block", kr: "Arae Makgi", om: "Uggura gadi" },
+  { en: "Middle block", kr: "Momtong Makgi", om: "Uggura jidduu" },
+  { en: "High block", kr: "Olgul Makgi", om: "Uggura olii" },
+  { en: "Inside forearm block", kr: "An Palmok Makgi", om: "Uggura keessaa harka" },
+  { en: "Outside forearm block", kr: "Bakat Palmok Makgi", om: "Uggura alaa harka" },
+  { en: "Knife-hand guarding block", kr: "Sonkal Daebi Makgi", om: "Uggura harka billaa eegumsaa" },
+  { en: "Knife-hand low block", kr: "Sonkal Arae Makgi", om: "Uggura harka billaa gadi" },
+  { en: "Twin forearm block", kr: "Sang Palmok Makgi", om: "Uggura harka lama" },
+  { en: "X-fist block", kr: "Kyocha Joomuk Makgi", om: "Uggura harka ce’umsaa" },
+  { en: "Wedging block", kr: "Hechyo Makgi", om: "Uggura baninsaa" },
+  { en: "Palm pushing block", kr: "Sonbadak Miro Makgi", om: "Uggura riixaa harka" },
+  { en: "Checking block", kr: "Momchau Makgi", om: "Uggura to’annoo" }
 ];
 
 const kicks = [
-  { en: "Front kick", om: "Mormii duraa" },
-  { en: "Side kick", om: "Mormii cinaa" },
-  { en: "Turning kick", om: "Mormii marsaa" },
-  { en: "Back kick", om: "Mormii duubaa" },
-  { en: "Jump front kick", om: "Mormii duraa sakatta’aa" }
+  { en: "Front kick", kr: "Ap Chagi", om: "Mormii duraa" },
+  { en: "Side kick", kr: "Yop Chagi", om: "Mormii cinaa" },
+  { en: "Turning kick", kr: "Dollyo Chagi", om: "Mormii marsaa" },
+  { en: "Back kick", kr: "Dwit Chagi", om: "Mormii duubaa" },
+  { en: "Reverse turning kick", kr: "Bandae Dollyo Chagi", om: "Mormii marsaa faallaa" },
+  { en: "Crescent kick", kr: "Bandal Chagi", om: "Mormii marsaa gogaa" },
+  { en: "Downward kick", kr: "Naeryo Chagi", om: "Mormii gadi buusaa" },
+  { en: "Hook kick", kr: "Huryeo Chagi", om: "Mormii harkisaa" },
+  { en: "Jump front kick", kr: "Twimyo Ap Chagi", om: "Mormii duraa sakatta’aa" },
+  { en: "Jump side kick", kr: "Twimyo Yop Chagi", om: "Mormii cinaa sakatta’aa" },
+  { en: "Jump turning kick", kr: "Twimyo Dollyo Chagi", om: "Mormii marsaa sakatta’aa" },
+  { en: "Flying side kick", kr: "Ttwieo Yop Chagi", om: "Mormii cinaa balali’aa" }
 ];
 
 const handTechniques = [
-  { en: "Middle punch", om: "Rukutaa jidduu" },
-  { en: "Knife-hand strike", om: "Dha’icha harka billaa" },
-  { en: "Elbow strike", om: "Dha’icha jilbaa harka" }
+  { en: "Middle punch", kr: "Momtong Jireugi", om: "Rukutaa jidduu" },
+  { en: "High punch", kr: "Olgul Jireugi", om: "Rukutaa olii" },
+  { en: "Low punch", kr: "Arae Jireugi", om: "Rukutaa gadi" },
+  { en: "Reverse punch", kr: "Bandae Jireugi", om: "Rukutaa faallaa" },
+  { en: "Double punch", kr: "Doo Jireugi", om: "Rukutaa lama" },
+  { en: "Knife-hand strike", kr: "Sonkal Taerigi", om: "Dha’icha harka billaa" },
+  { en: "Back fist strike", kr: "Dung Joomuk Taerigi", om: "Dha’icha harka duubaa" },
+  { en: "Ridge-hand strike", kr: "Yuk Sonkal Taerigi", om: "Dha’icha cinaa harka" },
+  { en: "Palm heel strike", kr: "Sonbadak Taerigi", om: "Dha’icha lafee harka" },
+  { en: "Elbow strike", kr: "Palkup Taerigi", om: "Dha’icha jilbaa harka" },
+  { en: "Hammer fist strike", kr: "Me Joomuk Taerigi", om: "Dha’icha harka rukuttaa" }
 ];
 
 /* ================= APP ================= */
