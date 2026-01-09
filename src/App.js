@@ -40,6 +40,34 @@ export default function App() {
   const [lang, setLang] = useState("en");
 
   return (
+    <h3>🧍‍♂️ Stances (Seogi)</h3>
+<ul>
+  {stances.map((s, i) => (
+    <li key={i}>{lang === "en" ? s.en : s.om}</li>
+  ))}
+</ul>
+
+<h3>🛡️ Blocks (Makgi)</h3>
+<ul>
+  {blocks.map((b, i) => (
+    <li key={i}>{lang === "en" ? b.en : b.om}</li>
+  ))}
+</ul>
+
+<h3>🦶 Kicks (Chagi)</h3>
+<ul>
+  {kicks.map((k, i) => (
+    <li key={i}>{lang === "en" ? k.en : k.om}</li>
+  ))}
+</ul>
+
+<h3>👊 Hand Techniques</h3>
+<ul>
+  {handTechniques.map((h, i) => (
+    <li key={i}>{lang === "en" ? h.en : h.om}</li>
+  ))}
+</ul>
+
     <div style={{ padding: 16, fontFamily: "Arial" }}>
       <div style={{ display: "flex", justifyContent: "space-between" }}>
         <h2>🥋 ITF Taekwondo Trainer</h2>
@@ -67,6 +95,39 @@ export default function App() {
       </ul>
 
       <h3>📚 Techniques Required per Belt</h3>
+        const stances = [
+  { en: "Parallel stance", om: "Seera walqixa" },
+  { en: "Walking stance", om: "Seera deemsa" },
+  { en: "L-stance", om: "Seera L" },
+  { en: "Sitting stance", om: "Seera taa’aa" },
+  { en: "Rear foot stance", om: "Seera miila duubaa" },
+  { en: "Fixed stance", om: "Seera dhaabbataa" },
+  { en: "Close stance", om: "Seera dhihoo" }
+];
+const blocks = [
+  { en: "Low block", om: "Uggura gadi" },
+  { en: "Middle block", om: "Uggura jidduu" },
+  { en: "High block", om: "Uggura olii" },
+  { en: "Knife-hand guarding block", om: "Uggura harka billaa" },
+  { en: "Twin forearm block", om: "Uggura harka lama" },
+  { en: "X-fist block", om: "Uggura harka ce’umsaa" }
+];
+const kicks = [
+  { en: "Front kick", om: "Mormii duraa" },
+  { en: "Side kick", om: "Mormii cinaa" },
+  { en: "Turning kick", om: "Mormii marsaa" },
+  { en: "Back kick", om: "Mormii duubaa" },
+  { en: "Reverse turning kick", om: "Mormii marsaa faallaa" },
+  { en: "Jump front kick", om: "Mormii duraa sakatta’aa" },
+  { en: "Jump side kick", om: "Mormii cinaa sakatta’aa" }
+];
+const handTechniques = [
+  { en: "Middle punch", om: "Rukutaa jidduu" },
+  { en: "High punch", om: "Rukutaa olii" },
+  { en: "Knife-hand strike", om: "Dha’icha harka billaa" },
+  { en: "Elbow strike", om: "Dha’icha jilbaa harka" },
+  { en: "Back fist strike", om: "Dha’icha harka duubaa" }
+];
       <ul>
         {beltTechniques.map((t, i) => (
           <li key={i}>
