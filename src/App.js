@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 
+/* ================= DATA ================= */
+
 const belts = [
   { geup: "10th Geup", color: "White Belt", pattern: "None", om: "10ffaa – Qal’ee adii – Hin jiru" },
   { geup: "9th Geup", color: "White–Yellow Belt", pattern: "Chon-Ji", om: "9ffaa – Adii-balleessa – Chon-Ji" },
@@ -29,72 +31,14 @@ const beltTechniques = [
   { geup: "8th Geup", en: "High block, Side kick", om: "Uggura olii, Mormii cinaa" },
   { geup: "7th Geup", en: "L-stance, Knife-hand guarding block", om: "Seera L, Uggura harka billaa" },
   { geup: "6th Geup", en: "Turning kick, Twin forearm block", om: "Mormii marsaa, Uggura harka lama" },
-  { geup: "5th Geup", en: "Back kick, Elbow strike", om: "Mormii duubaa, Dha'aa jilbaa harka" },
+  { geup: "5th Geup", en: "Back kick, Elbow strike", om: "Mormii duubaa, Dha’icha jilbaa harka" },
   { geup: "4th Geup", en: "Reverse turning kick", om: "Mormii marsaa faallaa" },
-  { geup: "3rd Geup", en: "Jump front kick", om: "Mormii duraa sakatta'aa" },
-  { geup: "2nd Geup", en: "Jump side kick", om: "Mormii cinaa sakatta'aa" },
+  { geup: "3rd Geup", en: "Jump front kick", om: "Mormii duraa sakatta’aa" },
+  { geup: "2nd Geup", en: "Jump side kick", om: "Mormii cinaa sakatta’aa" },
   { geup: "1st Geup", en: "Combination techniques", om: "Teeknika walitti makamaa" }
 ];
 
-export default function App() {
-  const [lang, setLang] = useState("en");
-
-  return (
-    </div>   <h3>🧍‍♂️ Stances (Seogi)</h3>
-<ul>
-  {stances.map((s, i) => (
-    <li key={i}>{lang === "en" ? s.en : s.om}</li>
-  ))}
-</ul>
-
-<h3>🛡️ Blocks (Makgi)</h3>
-<ul>
-  {blocks.map((b, i) => (
-    <li key={i}>{lang === "en" ? b.en : b.om}</li>
-  ))}
-</ul>
-
-<h3>🦶 Kicks (Chagi)</h3>
-<ul>
-  {kicks.map((k, i) => (
-    <li key={i}>{lang === "en" ? k.en : k.om}</li>
-  ))}
-</ul>
-
-<h3>👊 Hand Techniques</h3>
-<ul>
-  {handTechniques.map((h, i) => (
-    <li key={i}>{lang === "en" ? h.en : h.om}</li>
-  ))}
-</ul>
-
-  </div>   <div style={{ padding: 16, fontFamily: "Arial" }}>
-      <div style={{ display: "flex", justifyContent: "space-between" }}>
-        <h2>🥋 ITF Taekwondo Trainer</h2>
-        <button onClick={() => setLang(lang === "en" ? "om" : "en")}>
-          {lang === "en" ? "🇪🇹" : "🇬🇧"}
-        </button>
-
-      <h3>🎗️ ITF Colored Belt Syllabus</h3>
-      <ul>
-        {belts.map((b, i) => (
-          <li key={i}>
-            <b>{b.geup}</b> – {lang === "en" ? `${b.color} | Pattern: ${b.pattern}` : b.om}
-          </li>
-        ))}
-      </ul>
-
-      <h3>⚫ ITF Black Belt Patterns</h3>
-      <ul>
-        {danPatterns.map((d, i) => (
-          <li key={i}>
-            <b>{d.dan}</b> – {d.pattern}
-          </li>
-        ))}
-      </ul>
-
-      <h3>📚 Techniques Required per Belt</h3>
-        const stances = [
+const stances = [
   { en: "Parallel stance", om: "Seera walqixa" },
   { en: "Walking stance", om: "Seera deemsa" },
   { en: "L-stance", om: "Seera L" },
@@ -103,43 +47,73 @@ export default function App() {
   { en: "Fixed stance", om: "Seera dhaabbataa" },
   { en: "Close stance", om: "Seera dhihoo" }
 ];
+
 const blocks = [
   { en: "Low block", om: "Uggura gadi" },
   { en: "Middle block", om: "Uggura jidduu" },
   { en: "High block", om: "Uggura olii" },
   { en: "Knife-hand guarding block", om: "Uggura harka billaa" },
-  { en: "Twin forearm block", om: "Uggura harka lama" },
-  { en: "X-fist block", om: "Uggura harka ce’umsaa" }
+  { en: "Twin forearm block", om: "Uggura harka lama" }
 ];
+
 const kicks = [
   { en: "Front kick", om: "Mormii duraa" },
   { en: "Side kick", om: "Mormii cinaa" },
   { en: "Turning kick", om: "Mormii marsaa" },
   { en: "Back kick", om: "Mormii duubaa" },
-  { en: "Reverse turning kick", om: "Mormii marsaa faallaa" },
-  { en: "Jump front kick", om: "Mormii duraa sakatta’aa" },
-  { en: "Jump side kick", om: "Mormii cinaa sakatta’aa" }
+  { en: "Jump front kick", om: "Mormii duraa sakatta’aa" }
 ];
+
 const handTechniques = [
   { en: "Middle punch", om: "Rukutaa jidduu" },
-  { en: "High punch", om: "Rukutaa olii" },
   { en: "Knife-hand strike", om: "Dha’icha harka billaa" },
-  { en: "Elbow strike", om: "Dha’icha jilbaa harka" },
-  { en: "Back fist strike", om: "Dha’icha harka duubaa" }
+  { en: "Elbow strike", om: "Dha’icha jilbaa harka" }
 ];
-      <ul>
-        {beltTechniques.map((t, i) => (
-          <li key={i}>
-            <b>{t.geup}</b> – {lang === "en" ? t.en : t.om}
-          </li>
-        ))}
-      </ul>
+
+/* ================= APP ================= */
+
+export default function App() {
+  const [lang, setLang] = useState("en");
+
+  return (
+    <div style={{ padding: 16, fontFamily: "Arial" }}>
+      <h2>🥋 ITF Taekwondo Trainer</h2>
+
+      <button onClick={() => setLang(lang === "en" ? "om" : "en")}>
+        {lang === "en" ? "🇪🇹 Afaan Oromo" : "🇬🇧 English"}
+      </button>
+
+      <h3>🎗️ Colored Belts</h3>
+      <ul>{belts.map((b,i)=>(
+        <li key={i}><b>{b.geup}</b> – {lang==="en"?`${b.color} | ${b.pattern}`:b.om}</li>
+      ))}</ul>
+
+      <h3>⚫ Black Belt Patterns</h3>
+      <ul>{danPatterns.map((d,i)=>(
+        <li key={i}><b>{d.dan}</b> – {d.pattern}</li>
+      ))}</ul>
+
+      <h3>📚 Techniques per Belt</h3>
+      <ul>{beltTechniques.map((t,i)=>(
+        <li key={i}><b>{t.geup}</b> – {lang==="en"?t.en:t.om}</li>
+      ))}</ul>
+
+      <h3>🧍‍♂️ Stances</h3>
+      <ul>{stances.map((s,i)=><li key={i}>{lang==="en"?s.en:s.om}</li>)}</ul>
+
+      <h3>🛡️ Blocks</h3>
+      <ul>{blocks.map((b,i)=><li key={i}>{lang==="en"?b.en:b.om}</li>)}</ul>
+
+      <h3>🦶 Kicks</h3>
+      <ul>{kicks.map((k,i)=><li key={i}>{lang==="en"?k.en:k.om}</li>)}</ul>
+
+      <h3>👊 Hand Techniques</h3>
+      <ul>{handTechniques.map((h,i)=><li key={i}>{lang==="en"?h.en:h.om}</li>)}</ul>
 
       <hr />
       <p><b>Created by:</b> Ahmed Muhammad</p>
       <p><b>Instructor:</b> Sayimak Ibrahim</p>
-      <p><b>Assistance:</b> ChatGPT (OpenAI)</p>
-        
+      <p><b>Assistance:</b> ChatGPT</p>
     </div>
   );
 }
