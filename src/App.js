@@ -121,4 +121,64 @@ const danPatterns = [
   { dan: "5th Dan", pattern: "Yoo-Sin" },
   { dan: "6th Dan", pattern: "Choi-Yong, Yon-Gae, Ul-Ji, Moon-Moo" },
   { dan: "7th Dan", pattern: "So-San, Se-Jong" }
+  {<h3>📚 Techniques Required per Belt</h3>
+<ul>
+  {beltTechniques.map((t, i) => (
+    <li key={i}>
+      <b>{t.geup}</b> – {lang === "en" ? t.en : t.om}
+    </li>
+  ))}
+</ul>
+];
+const beltTechniques = [
+  {
+    geup: "10th Geup",
+    en: "Parallel stance, Low block, Middle punch",
+    om: "Seera walqixa, Uggura gadi, Rukutaa jidduu"
+  },
+  {
+    geup: "9th Geup",
+    en: "Walking stance, Middle block, Front kick",
+    om: "Seera deemsa, Uggura jidduu, Mormii duraa"
+  },
+  {
+    geup: "8th Geup",
+    en: "High block, Side kick",
+    om: "Uggura olii, Mormii cinaa"
+  },
+  {
+    geup: "7th Geup",
+    en: "L-stance, Knife-hand guarding block",
+    om: "Seera L, Uggura harka billaa"
+  },
+  {
+    geup: "6th Geup",
+    en: "Turning kick, Twin forearm block",
+    om: "Mormii marsaa, Uggura harka lama"
+  },
+  {
+    geup: "5th Geup",
+    en: "Back kick, Elbow strike",
+    om: "Mormii duubaa, Dha'aa jilbaa harka"
+  },
+  {
+    geup: "4th Geup",
+    en: "Reverse turning kick",
+    om: "Mormii marsaa faallaa"
+  },
+  {
+    geup: "3rd Geup",
+    en: "Jump front kick",
+    om: "Mormii duraa sakatta'aa"
+  },
+  {
+    geup: "2nd Geup",
+    en: "Jump side kick",
+    om: "Mormii cinaa sakatta'aa"
+  },
+  {
+    geup: "1st Geup",
+    en: "Combination techniques",
+    om: "Teeknika walitti makamaa"
+  }
 ];
