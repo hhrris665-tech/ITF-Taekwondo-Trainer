@@ -29,6 +29,52 @@ const quizQuestions = [
     options: ["18", "19", "20", "21"],
     answer: "19"
   }
+   const beltQuiz = {
+  "10th Geup": [
+    {
+      q_en: "Which block is learned first?",
+      q_om: "Uggura jalqabaa kam?",
+      options: ["Low block", "High block", "Knife-hand block"],
+      answer: "Low block"
+    }
+  ],
+  "9th Geup": [
+    {
+      q_en: "What kick is Ap Chagi?",
+      q_om: "Ap Chagi mormii kami?",
+      options: ["Front kick", "Side kick", "Back kick"],
+      answer: "Front kick"
+    }
+  ]
+};
+function TimedExam({ lang }) {
+  const [time, setTime] = useState(60);
+  const [done, setDone] = useState(false);
+
+  React.useEffect(() => {
+    if (time === 0) {
+      setDone(true);
+      return;
+    }
+    const t = setTimeout(() => setTime(time - 1), 1000);
+    return () => clearTimeout(t);
+  }, [time]);
+
+  return (
+    <div>
+      <h3>⏱️ ITF Exam Mode</h3>
+      <p>
+        {lang === "en" ? "Time left:" : "Yeroo hafe:"} {time}s
+      </p>
+
+      {done ? (
+        <p>{lang === "en" ? "Exam finished" : "Qormaanni xumurame"}</p>
+      ) : (
+        <p>{lang === "en" ? "Answer quickly!" : "Deebii saffisaan kenni!"}</p>
+      )}
+    </div>
+  );
+}
 ];
 // Belt syllabus
 const belts = [
@@ -152,6 +198,70 @@ function FootPathAnimator({ steps, lang }) {
 /* =========================
    MAIN APP
 ========================= */
+<Menu lang={lang} />
+   
+<Quiz lang={lang} />
+<hr/>
+   <BeltQuiz lang={lang} />
+
+<hr />
+<TimedExam lang={lang} />
+function Menu({ lang }) {
+  const [open, setOpen] = useState(false);
+
+  return (
+    <div style={{ position: "relative" }}>
+      <button onClick={() => setOpen(!open)}>⋮</button>
+
+      {open && (
+        <div style={{
+          position: "absolute",
+          right: 0,
+          background: "#222",
+          color: "#fff",
+          padding: 10,
+          width: 200
+        }}>
+          <p><b>ℹ️ ITF Info</b></p>
+          <p>
+            {lang === "en"
+              ? "ITF founded in 1966 by Gen. Choi Hong Hi."
+              : "ITF bara 1966tti Gen. Choi Hong Hi'n hundeeffame."}
+          </p>
+
+          <p><b>⚙️ Settings</b></p>
+          <p>Offline Mode ✔</p>
+        </div>
+      )}
+    </div>
+  );
+           }
+function BeltQuiz({ lang }) {
+  const [belt, setBelt] = useState("10th Geup");
+  const questions = beltQuiz[belt] || [];
+  const q = questions[0];
+
+  return (
+    <div>
+      <h3>🎗️ Belt Quiz</h3>
+
+      <select onChange={e => setBelt(e.target.value)}>
+        {Object.keys(beltQuiz).map((b, i) => (
+          <option key={i}>{b}</option>
+        ))}
+      </select>
+
+      {q && (
+        <>
+          <p>{lang === "en" ? q.q_en : q.q_om}</p>
+          {q.options.map((o, i) => (
+            <button key={i}>{o}</button>
+          ))}
+        </>
+      )}
+    </div>
+  );
+                                     }
 function Quiz({ lang }) {
   const [index, setIndex] = useState(0);
   const [score, setScore] = useState(0);
@@ -194,7 +304,6 @@ function Quiz({ lang }) {
       <h3>🧠 ITF Quiz</h3>
       <p>{lang === "en" ? q.q_en : q.q_om}</p>
 <hr />
-<Quiz lang={lang} />
       {q.options.map((opt, i) => (
         <button
           key={i}
