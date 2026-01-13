@@ -3,7 +3,65 @@ import React, { useState, useEffect } from "react";
 /* =========================
    DATA
 ========================= */
+// tuls
+const tuls = {
+  "Chon-Ji": {
+    moves: 19,
+    steps: [
+      {
+        x: 150,
+        y: 40,
+        foot: "L",
+        en: "Low block in walking stance",
+        om: "Uggura gadi seera deemsa"
+      },
+      {
+        x: 150,
+        y: 80,
+        foot: "R",
+        en: "Middle punch",
+        om: "Rukutaa jidduu"
+      }
+    ]
+  },
 
+  "Dan-Gun": {
+    moves: 21,
+    steps: [
+      {
+        x: 150,
+        y: 40,
+        foot: "L",
+        en: "High block",
+        om: "Uggura olii"
+      }
+    ]
+  },
+
+  "Do-San": { moves: 24, steps: [] },
+  "Won-Hyo": { moves: 28, steps: [] },
+  "Yul-Gok": { moves: 38, steps: [] },
+  "Joong-Gun": { moves: 32, steps: [] },
+  "Toi-Gye": { moves: 37, steps: [] },
+  "Hwa-Rang": { moves: 29, steps: [] },
+  "Choong-Moo": { moves: 30, steps: [] },
+
+  "Kwang-Gae": { moves: 39, steps: [] },
+  "Po-Eun": { moves: 36, steps: [] },
+  "Ge-Baek": { moves: 44, steps: [] },
+
+  "Eui-Am": { moves: 45, steps: [] },
+  "Choong-Jang": { moves: 52, steps: [] },
+  "Juche": { moves: 45, steps: [] },
+  "Sam-Il": { moves: 33, steps: [] },
+  "Yoo-Sin": { moves: 68, steps: [] },
+  "Choi-Yong": { moves: 46, steps: [] },
+  "Yon-Gae": { moves: 49, steps: [] },
+  "Ul-Ji": { moves: 42, steps: [] },
+  "Moon-Moo": { moves: 61, steps: [] },
+  "So-San": { moves: 72, steps: [] },
+  "Se-Jong": { moves: 24, steps: [] }
+};
 // Quiz (general)
 const quizQuestions = [
   {
@@ -158,8 +216,47 @@ function TimedExam({ lang }) {
   return <p>{lang === "en" ? "Time:" : "Yeroo:"} {t}</p>;
 }
 
-function FootPath({ steps, lang }) {
-  const [s, setS] = useState(0);
+function TulAnimator({ tul, lang }) {
+  const steps = tul.steps;
+  const [i, setI] = useState(0);
+
+  return (
+    <div>
+      <svg width="300" height="220" style={{ border: "1px solid #aaa" }}>
+        {steps.slice(0, i + 1).map((s, idx) => (
+          <g key={idx}>
+            <circle
+              cx={s.x}
+              cy={s.y}
+              r="9"
+              fill={s.foot === "L" ? "#1976d2" : "#d32f2f"}
+            />
+            <text
+              x={s.x}
+              y={s.y - 12}
+              fontSize="10"
+              textAnchor="middle"
+            >
+              {idx + 1}
+            </text>
+          </g>
+        ))}
+      </svg>
+
+      {steps[i] && (
+        <p>
+          <b>Step {i + 1}:</b>{" "}
+          {lang === "en" ? steps[i].en : steps[i].om}
+        </p>
+      )}
+
+      <button onClick={() => i < steps.length - 1 && setI(i + 1)}>
+        Next Step
+      </button>
+      <button onClick={() => setI(0)}>Reset</button>
+    </div>
+  );
+     }
 
   return (
     <div>
