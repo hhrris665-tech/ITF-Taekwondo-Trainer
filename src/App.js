@@ -3,7 +3,33 @@ import React, { useState, useEffect } from "react";
 /* =========================
    DATA
 ========================= */
-
+   // quiz mode
+const quizQuestions = [
+  {
+    q_en: "What does 'Ap Chagi' mean?",
+    q_om: "Ap Chagi jechuun maal jechuudha?",
+    options: ["Front kick", "Side kick", "Back kick", "Turning kick"],
+    answer: "Front kick"
+  },
+  {
+    q_en: "Which stance is called 'Niunja Sogi'?",
+    q_om: "Niunja Sogi jechuun seera kami?",
+    options: ["Walking stance", "L-stance", "Sitting stance", "Parallel stance"],
+    answer: "L-stance"
+  },
+  {
+    q_en: "What is Arae Makgi?",
+    q_om: "Arae Makgi jechuun maal?",
+    options: ["High block", "Middle block", "Low block", "Knife-hand block"],
+    answer: "Low block"
+  },
+  {
+    q_en: "How many movements are in Chon-Ji Tul?",
+    q_om: "Chon-Ji Tul tarkaanfii meeqa qaba?",
+    options: ["18", "19", "20", "21"],
+    answer: "19"
+  }
+];
 // Belt syllabus
 const belts = [
   { geup: "10th Geup", en: "White Belt", om: "Qal’ee adii" },
@@ -126,7 +152,71 @@ function FootPathAnimator({ steps, lang }) {
 /* =========================
    MAIN APP
 ========================= */
+function Quiz({ lang }) {
+  const [index, setIndex] = useState(0);
+  const [score, setScore] = useState(0);
+  const [finished, setFinished] = useState(false);
 
+  const q = quizQuestions[index];
+
+  function answer(option) {
+    if (option === q.answer) setScore(score + 1);
+
+    if (index + 1 < quizQuestions.length) {
+      setIndex(index + 1);
+    } else {
+      setFinished(true);
+    }
+  }
+
+  if (finished) {
+    return (
+      <div>
+        <h3>🏁 Quiz Finished</h3>
+        <p>
+          {lang === "en"
+            ? `Score: ${score} / ${quizQuestions.length}`
+            : `Bu’aa: ${score} / ${quizQuestions.length}`}
+        </p>
+        <button onClick={() => {
+          setIndex(0);
+          setScore(0);
+          setFinished(false);
+        }}>
+          Restart
+        </button>
+      </div>
+    );
+  }
+
+  return (
+    <div>
+      <h3>🧠 ITF Quiz</h3>
+      <p>{lang === "en" ? q.q_en : q.q_om}</p>
+<hr />
+<Quiz lang={lang} />
+      {q.options.map((opt, i) => (
+        <button
+          key={i}
+          onClick={() => answer(opt)}
+          style={{
+            display: "block",
+            margin: "6px 0",
+            width: "100%"
+          }}
+        >
+          {opt}
+        </button>
+      ))}
+
+      <p>
+        {lang === "en"
+          ? `Question ${index + 1} / ${quizQuestions.length}`
+          : `Gaaffii ${index + 1} / ${quizQuestions.length}`}
+      </p>
+    </div>
+  );
+}
 export default function App() {
   const [lang, setLang] = useState("en");
   const [selectedTul] = useState("Chon-Ji");
