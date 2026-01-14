@@ -1,234 +1,80 @@
 import React, { useState, useEffect } from "react";
 
-/* =========================
-   DATA
-========================= */
-// tuls
-const tuls = {
+/* =====================================================
+   DATA — TULS (SVG STEP PATHS, OFFLINE)
+===================================================== */
+
+const TULS = {
   "Chon-Ji": {
-    moves: 19,
+    movements: 19,
+    meaning: "Heaven and Earth",
+    history:
+      "Chon-Ji represents the creation of the world and the beginning of human history.",
     steps: [
-      {
-        x: 150,
-        y: 40,
-        foot: "L",
-        en: "Low block in walking stance",
-        om: "Uggura gadi seera deemsa"
-      },
-      {
-        x: 150,
-        y: 80,
-        foot: "R",
-        en: "Middle punch",
-        om: "Rukutaa jidduu"
-      }
+      { x: 150, y: 40, foot: "L", text: "Low block" },
+      { x: 150, y: 80, foot: "R", text: "Middle punch" },
+      { x: 120, y: 120, foot: "L", text: "Turn & low block" },
+      { x: 180, y: 160, foot: "R", text: "Middle punch" }
     ]
   },
 
   "Dan-Gun": {
-    moves: 21,
+    movements: 21,
+    meaning: "Holy Dangun",
+    history:
+      "Named after Dangun, the legendary founder of Korea in 2333 BC.",
     steps: [
-      {
-        x: 150,
-        y: 40,
-        foot: "L",
-        en: "High block",
-        om: "Uggura olii"
-      }
+      { x: 150, y: 40, foot: "L", text: "High block" },
+      { x: 150, y: 80, foot: "R", text: "Middle punch" }
     ]
-  },
-
-  "Do-San": { moves: 24, steps: [] },
-  "Won-Hyo": { moves: 28, steps: [] },
-  "Yul-Gok": { moves: 38, steps: [] },
-  "Joong-Gun": { moves: 32, steps: [] },
-  "Toi-Gye": { moves: 37, steps: [] },
-  "Hwa-Rang": { moves: 29, steps: [] },
-  "Choong-Moo": { moves: 30, steps: [] },
-
-  "Kwang-Gae": { moves: 39, steps: [] },
-  "Po-Eun": { moves: 36, steps: [] },
-  "Ge-Baek": { moves: 44, steps: [] },
-
-  "Eui-Am": { moves: 45, steps: [] },
-  "Choong-Jang": { moves: 52, steps: [] },
-  "Juche": { moves: 45, steps: [] },
-  "Sam-Il": { moves: 33, steps: [] },
-  "Yoo-Sin": { moves: 68, steps: [] },
-  "Choi-Yong": { moves: 46, steps: [] },
-  "Yon-Gae": { moves: 49, steps: [] },
-  "Ul-Ji": { moves: 42, steps: [] },
-  "Moon-Moo": { moves: 61, steps: [] },
-  "So-San": { moves: 72, steps: [] },
-  "Se-Jong": { moves: 24, steps: [] }
-};
-// Quiz (general)
-const quizQuestions = [
-  {
-    q_en: "What does Ap Chagi mean?",
-    q_om: "Ap Chagi jechuun maal jechuudha?",
-    options: ["Front kick", "Side kick", "Back kick", "Turning kick"],
-    answer: "Front kick"
-  },
-  {
-    q_en: "Which stance is Niunja Sogi?",
-    q_om: "Niunja Sogi seera kami?",
-    options: ["Walking stance", "L-stance", "Parallel stance"],
-    answer: "L-stance"
-  },
-  {
-    q_en: "What is Arae Makgi?",
-    q_om: "Arae Makgi jechuun maal?",
-    options: ["High block", "Middle block", "Low block"],
-    answer: "Low block"
-  }
-];
-
-// Belt quiz
-const beltQuiz = {
-  "10th Geup": [
-    {
-      q_en: "Which block is learned first?",
-      q_om: "Uggura jalqabaa kam?",
-      options: ["Low block", "High block"],
-      answer: "Low block"
-    }
-  ],
-  "9th Geup": [
-    {
-      q_en: "What kick is Ap Chagi?",
-      q_om: "Ap Chagi mormii kami?",
-      options: ["Front kick", "Side kick"],
-      answer: "Front kick"
-    }
-  ]
-};
-
-// Belt syllabus
-const belts = [
-  { geup: "10th Geup", en: "White Belt", om: "Qal’ee adii" },
-  { geup: "9th Geup", en: "White–Yellow Belt", om: "Adii–Balleessa" },
-  { geup: "8th Geup", en: "Yellow Belt", om: "Balleessa" },
-  { geup: "7th Geup", en: "Yellow–Green Belt", om: "Balleessa–Magariisa" },
-  { geup: "6th Geup", en: "Green Belt", om: "Magariisa" }
-];
-
-// Techniques
-const stances = [
-  { en: "Walking stance (Gunnun Sogi)", om: "Seera deemsa" },
-  { en: "L-stance (Niunja Sogi)", om: "Seera L" },
-  { en: "Parallel stance (Narani Sogi)", om: "Seera walqixa" }
-];
-
-const blocks = [
-  { en: "Low block (Arae Makgi)", om: "Uggura gadi" },
-  { en: "Middle block (Momtong Makgi)", om: "Uggura jidduu" },
-  { en: "High block (Olgul Makgi)", om: "Uggura olii" }
-];
-
-const kicks = [
-  { en: "Front kick (Ap Chagi)", om: "Mormii duraa" },
-  { en: "Side kick (Yop Chagi)", om: "Mormii cinaa" },
-  { en: "Turning kick (Dollyo Chagi)", om: "Mormii marsaa" }
-];
-
-// Tul SVG path (example)
-const tulPaths = {
-  "Chon-Ji": [
-    { x: 150, y: 40, foot: "L", en: "Low block", om: "Uggura gadi" },
-    { x: 150, y: 80, foot: "R", en: "Middle punch", om: "Rukutaa jidduu" },
-    { x: 120, y: 120, foot: "L", en: "Turn", om: "Marsaa" }
-  ]
-};
-/* =========================
-   COMPONENTS
-========================= */
-
-function Menu({ lang }) {
-  const [open, setOpen] = useState(false);
-
-  return (
-    <div style={{ position: "relative" }}>
-      <button onClick={() => setOpen(!open)}>⋮</button>
-      {open && (
-        <div style={{ background: "#222", color: "#fff", padding: 10 }}>
-          <p>
-            {lang === "en"
-              ? "ITF founded in 1966 by Gen. Choi Hong Hi."
-              : "ITF bara 1966tti Gen. Choi Hong Hi'n hundeeffame."}
-          </p>
-          <p>Offline Mode ✔</p>
-        </div>
-      )}
-    </div>
-  );
-}
-
-function Quiz({ lang }) {
-  const [i, setI] = useState(0);
-  const [score, setScore] = useState(0);
-  const q = quizQuestions[i];
-
-  function answer(a) {
-    if (a === q.answer) setScore(score + 1);
-    if (i < quizQuestions.length - 1) setI(i + 1);
   }
 
-  return (
-    <div>
-      <h3>🧠 Quiz</h3>
-      <p>{lang === "en" ? q.q_en : q.q_om}</p>
-      {q.options.map((o, idx) => (
-        <button key={idx} onClick={() => answer(o)}>
-          {o}
-        </button>
-      ))}
-      <p>{score} / {quizQuestions.length}</p>
-    </div>
-  );
-}
+  // ⚠️ You will continue adding up to 24 Tuls here
+};
 
-function BeltQuiz({ lang }) {
-  const [belt, setBelt] = useState("10th Geup");
-  const q = beltQuiz[belt][0];
+/* =====================================================
+   BELT SYLLABUS
+===================================================== */
 
-  return (
-    <div>
-      <h3>🎗️ Belt Quiz</h3>
-      <select onChange={e => setBelt(e.target.value)}>
-        {Object.keys(beltQuiz).map(b => (
-          <option key={b}>{b}</option>
-        ))}
-      </select>
-      <p>{lang === "en" ? q.q_en : q.q_om}</p>
-    </div>
-  );
-}
+const BELTS = [
+  "10th Geup",
+  "9th Geup",
+  "8th Geup",
+  "7th Geup",
+  "6th Geup",
+  "5th Geup",
+  "4th Geup",
+  "3rd Geup",
+  "2nd Geup",
+  "1st Geup",
+  "1st Dan"
+];
 
-function TimedExam({ lang }) {
-  const [t, setT] = useState(30);
+/* =====================================================
+   SVG FOOTSTEP ANIMATOR
+===================================================== */
+
+function FootPathAnimator({ steps }) {
+  const [index, setIndex] = useState(0);
+  const [play, setPlay] = useState(false);
+
   useEffect(() => {
-    if (t === 0) return;
-    const i = setTimeout(() => setT(t - 1), 1000);
-    return () => clearTimeout(i);
-  }, [t]);
+    if (!play) return;
+    if (index >= steps.length - 1) return;
 
-  return <p>{lang === "en" ? "Time:" : "Yeroo:"} {t}</p>;
-}
-
-function TulAnimator({ tul, lang }) {
-  const steps = tul.steps;
-  const [i, setI] = useState(0);
+    const t = setTimeout(() => setIndex(index + 1), 800);
+    return () => clearTimeout(t);
+  }, [play, index, steps.length]);
 
   return (
     <div>
       <svg width="300" height="220" style={{ border: "1px solid #aaa" }}>
-        {steps.slice(0, i + 1).map((s, idx) => (
-          <g key={idx}>
+        {steps.slice(0, index + 1).map((s, i) => (
+          <g key={i}>
             <circle
               cx={s.x}
               cy={s.y}
-              r="9"
+              r="10"
               fill={s.foot === "L" ? "#1976d2" : "#d32f2f"}
             />
             <text
@@ -236,66 +82,111 @@ function TulAnimator({ tul, lang }) {
               y={s.y - 12}
               fontSize="10"
               textAnchor="middle"
+              fontWeight="bold"
             >
-              {idx + 1}
+              {i + 1}
+            </text>
+            <text
+              x={s.x}
+              y={s.y + 4}
+              fontSize="9"
+              textAnchor="middle"
+              fill="#fff"
+              fontWeight="bold"
+            >
+              {s.foot}
             </text>
           </g>
         ))}
       </svg>
 
-      {steps[i] && (
-        <p>
-          <b>Step {i + 1}:</b>{" "}
-          {lang === "en" ? steps[i].en : steps[i].om}
-        </p>
-      )}
+      <p>{steps[index]?.text}</p>
 
-      <button onClick={() => i < steps.length - 1 && setI(i + 1)}>
-        Next Step
+      <button onClick={() => setPlay(!play)}>
+        {play ? "Pause" : "Play"}
       </button>
-      <button onClick={() => setI(0)}>Reset</button>
-    </div>
-  );
-     }
-
-  return (
-    <div>
-      <svg width="300" height="200">
-        {steps.slice(0, s + 1).map((p, i) => (
-          <circle key={i} cx={p.x} cy={p.y} r="8" fill="red" />
-        ))}
-      </svg>
-      <p>{steps[s] && (lang === "en" ? steps[s].en : steps[s].om)}</p>
-      <button onClick={() => setS(s + 1)}>Next</button>
+      <button onClick={() => {
+        setIndex(0);
+        setPlay(false);
+      }}>
+        Reset
+      </button>
     </div>
   );
 }
 
-/* =========================
-   APP
-========================= */
+/* =====================================================
+   COACH / INSTRUCTOR MODE
+===================================================== */
 
-export default function App() {
-  const [lang, setLang] = useState("en");
-
+function CoachMode({ progress }) {
   return (
-    <div style={{ padding: 16 }}>
-      <Menu lang={lang} />
+    <div style={{ background: "#111", color: "#fff", padding: 12 }}>
+      <h3>👨‍🏫 Coach Mode</h3>
 
-      <h2>🥋 ITF Taekwondo Trainer</h2>
-      <button onClick={() => setLang(lang === "en" ? "om" : "en")}>
-        {lang === "en" ? "🇪🇹 Oromo" : "🇬🇧 English"}
-      </button>
+      <p><b>Current Belt:</b> {progress.belt}</p>
+      <p><b>Completed Tuls:</b> {progress.completedTuls.length}</p>
+      <p><b>Training Time:</b> {progress.minutes} minutes</p>
 
-      <Quiz lang={lang} />
-      <BeltQuiz lang={lang} />
-      <TimedExam lang={lang} />
-
-      <h3>📐 Chon-Ji Tul</h3>
-      <FootPath steps={tulPaths["Chon-Ji"]} lang={lang} />
-
-      <p><b>Instructor:</b> Sayimak Ibrahim</p>
-      <p><b>Created by:</b> Ahmed Muhammad</p>
+      <p>Status: {progress.completedTuls.length >= 1 ? "Active" : "Beginner"}</p>
     </div>
   );
-        }
+}
+
+/* =====================================================
+   MAIN APP
+===================================================== */
+
+export default function App() {
+  const [selectedTul, setSelectedTul] = useState("Chon-Ji");
+  const [showCoach, setShowCoach] = useState(false);
+
+  const progress = {
+    belt: "9th Geup",
+    completedTuls: ["Chon-Ji"],
+    minutes: 120
+  };
+
+  const tul = TULS[selectedTul];
+
+  return (
+    <div style={{ padding: 16, fontFamily: "Arial" }}>
+      <header style={{ display: "flex", justifyContent: "space-between" }}>
+        <h2>🥋 ITF Taekwondo Trainer</h2>
+        <button onClick={() => setShowCoach(!showCoach)}>
+          {showCoach ? "Hide Coach" : "Coach Mode"}
+        </button>
+      </header>
+
+      {showCoach && <CoachMode progress={progress} />}
+
+      <hr />
+
+      <h3>📐 Tul Selection</h3>
+      <select value={selectedTul} onChange={e => setSelectedTul(e.target.value)}>
+        {Object.keys(TULS).map(t => (
+          <option key={t}>{t}</option>
+        ))}
+      </select>
+
+      <h3>{selectedTul}</h3>
+      <p><b>Movements:</b> {tul.movements}</p>
+      <p><b>Meaning:</b> {tul.meaning}</p>
+      <p><b>History:</b> {tul.history}</p>
+
+      <FootPathAnimator steps={tul.steps} />
+
+      <hr />
+
+      <h4>🎗️ Belt System</h4>
+      <ul>
+        {BELTS.map(b => <li key={b}>{b}</li>)}
+      </ul>
+
+      <footer>
+        <p><b>Instructor:</b> Sayimak Ibrahim</p>
+        <p><b>Created by:</b> Ahmed Muhammad</p>
+      </footer>
+    </div>
+  );
+}
