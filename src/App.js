@@ -29,7 +29,77 @@ const TULS = {
     ]
   }
 
-  // ⚠️ You will continue adding up to 24 Tuls here
+  const TULS = {
+  "Chon-Ji": {
+    movements: 19,
+    meaning: "Heaven and Earth",
+    history: "Creation of the world and the beginning of human history.",
+    steps: basicIPath()
+  },
+  "Dan-Gun": {
+    movements: 21,
+    meaning: "Holy Dangun",
+    history: "Founder of Korea in 2333 BC.",
+    steps: basicIPath()
+  },
+  "Do-San": {
+    movements: 24,
+    meaning: "Patriot Ahn Chang-Ho",
+    history: "Dedication to Korean independence.",
+    steps: basicIPath()
+  },
+  "Won-Hyo": {
+    movements: 28,
+    meaning: "Monk Won-Hyo",
+    history: "Introduction of Buddhism to Korea.",
+    steps: basicIPath()
+  },
+  "Yul-Gok": {
+    movements: 38,
+    meaning: "Scholar Yi I",
+    history: "Represents birth year 1536.",
+    steps: advancedPath()
+  },
+  "Joong-Gun": {
+    movements: 32,
+    meaning: "Patriot Ahn Joong-Gun",
+    history: "Assassinated Hirobumi Ito.",
+    steps: advancedPath()
+  },
+  "Toi-Gye": {
+    movements: 37,
+    meaning: "Scholar Yi Hwang",
+    history: "Authority on Neo-Confucianism.",
+    steps: advancedPath()
+  },
+  "Hwa-Rang": {
+    movements: 29,
+    meaning: "Hwa-Rang Youth Group",
+    history: "Foundation of Korean military spirit.",
+    steps: advancedPath()
+  },
+  "Choong-Moo": {
+    movements: 30,
+    meaning: "Admiral Yi Sun-Sin",
+    history: "Inventor of the turtle ship.",
+    steps: advancedPath()
+  },
+
+  /* BLACK BELT */
+  "Kwang-Gae": { movements: 39, meaning: "Expander of Territory", history: "King Kwang-Gae-Toh-Wang", steps: blackPath() },
+  "Po-Eun": { movements: 36, meaning: "Loyal Poet", history: "Chong Mong-Chu", steps: blackPath() },
+  "Ge-Baek": { movements: 44, meaning: "General Ge-Baek", history: "Baekje Dynasty", steps: blackPath() },
+  "Eui-Am": { movements: 45, meaning: "Patriot Son Byong-Hi", history: "Leader of independence movement", steps: blackPath() },
+  "Choong-Jang": { movements: 52, meaning: "General Kim Duk Ryang", history: "Yi Dynasty", steps: blackPath() },
+  "Juche": { movements: 45, meaning: "Self Reliance", history: "Philosophical tul", steps: blackPath() },
+  "Sam-Il": { movements: 33, meaning: "March 1st Movement", history: "1919 independence", steps: blackPath() },
+  "Yoo-Sin": { movements: 68, meaning: "General Kim Yoo-Sin", history: "Silla Dynasty", steps: blackPath() },
+  "Choi-Yong": { movements: 46, meaning: "General Choi Yong", history: "Loyalty to king", steps: blackPath() },
+  "Yon-Gae": { movements: 49, meaning: "General Yon-Gae Somoon", history: "Koguryo defense", steps: blackPath() },
+  "Ul-Ji": { movements: 42, meaning: "General Ul-Ji Moon Dok", history: "Defense of Korea", steps: blackPath() },
+  "Moon-Moo": { movements: 61, meaning: "King Moon-Moo", history: "Unification of Korea", steps: blackPath() },
+  "So-San": { movements: 72, meaning: "Monk So-San", history: "Scholar & patriot", steps: blackPath() },
+  "Se-Jong": { movements: 24, meaning: "King Se-Jong", history: "Inventor of Hangul", steps: blackPath() }
 };
 
 /* =====================================================
@@ -113,7 +183,25 @@ function FootPathAnimator({ steps }) {
       </button>
     </div>
   );
+function AnimatedPerson({ x, y, direction }) {
+  return (
+    <g transform={`translate(${x},${y}) rotate(${direction})`}>
+      {/* Head */}
+      <circle cx="0" cy="-18" r="6" fill="#000" />
+
+      {/* Body */}
+      <line x1="0" y1="-12" x2="0" y2="12" stroke="#000" strokeWidth="2" />
+
+      {/* Arms */}
+      <line x1="-10" y1="-5" x2="10" y2="-5" stroke="#000" strokeWidth="2" />
+
+      {/* Legs */}
+      <line x1="0" y1="12" x2="-8" y2="26" stroke="#000" strokeWidth="2" />
+      <line x1="0" y1="12" x2="8" y2="26" stroke="#000" strokeWidth="2" />
+    </g>
+  );
 }
+
 
 /* =====================================================
    COACH / INSTRUCTOR MODE
@@ -182,6 +270,26 @@ export default function App() {
       <ul>
         {BELTS.map(b => <li key={b}>{b}</li>)}
       </ul>
+
+                   function TulAnimator({ steps }) 
+  const [i, setI] = useState(0);
+
+  useEffect(() => {
+    const t = setTimeout(() => {
+      if (i < steps.length - 1) setI(i + 1);
+    }, 900);
+    return () => clearTimeout(t);
+  }, [i, steps.length]);
+
+  return (
+    <svg width="300" height="260" style={{ border: "1px solid #aaa" }}>
+      <AnimatedPerson
+        x={steps[i].x}
+        y={steps[i].y}
+        direction={steps[i].dir}
+      />
+    </svg>
+  );
 
       <footer>
         <p><b>Instructor:</b> Sayimak Ibrahim</p>
